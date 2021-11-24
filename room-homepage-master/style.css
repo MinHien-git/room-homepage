@@ -1,0 +1,401 @@
+/* import property */
+
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;600;700&display=swap');
+
+/* ------------------- */
+
+
+/* Custom properties   */
+
+
+/* ------------------- */
+
+:root {
+    /* colors */
+    --dark-gray: 0 0% 63%;
+    --black: 0 0% 0%;
+    --white: 0 0% 100%;
+    --very-dark-gray: 0 0% 27%;
+    /* font-sizes */
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-500: 1.75rem;
+    /* font-families */
+    --mobile-responsive: mobile;
+}
+
+@media (min-width:55em) {
+     :root {
+        --mobile-responsive: desktop;
+    }
+}
+
+
+/* ------------------- */
+
+
+/* Reset               */
+
+
+/* ------------------- */
+
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+
+/* Box sizing */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: 'Spartan', sans-serif;
+}
+
+
+/* Reset margins */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* set up the body */
+
+body {
+    line-height: 1.5;
+    min-height: 100vh;
+    font-size: 14px;
+    user-select: none;
+}
+
+body,
+html {
+    overflow-x: hidden;
+}
+
+
+/* make images easier to work with */
+
+img,
+picutre {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* make form elements easier to work with */
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+
+/* remove animations for people who've turned them off */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* ------------------- */
+
+
+/* Utility classes     */
+
+
+/* ------------------- */
+
+
+/* general */
+
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.grid {
+    display: grid;
+    gap: var(--gap, 1rem);
+}
+
+.container {
+    padding-inline: 2em;
+    margin-inline: auto;
+    max-width: 80rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    /* added line */
+    border: 0;
+}
+
+
+/* Class */
+
+.white-bg {
+    background-color: hsl(var(--white));
+}
+
+.gray-bg {
+    background-color: hsl(var(--dark-gray));
+}
+
+.black-bg {
+    background-color: hsl(var(--black));
+}
+
+.dark-gray-bg {
+    background-color: hsl(var(--very-dark-gray));
+}
+
+.white-fs {
+    color: hsl(var(--white));
+}
+
+.gray-fs {
+    color: hsl(var(--dark-gray));
+}
+
+.black-fs {
+    color: hsl(var(--black));
+}
+
+.dark-gray-fs {
+    color: hsl(var(--very-dark-gray));
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.fs-500 {
+    font-weight: 500;
+}
+
+.fs-600 {
+    font-weight: 600;
+}
+
+.fs-700 {
+    font-weight: 700;
+}
+
+.letter-spacing {
+    letter-spacing: 2px;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+
+/* Components */
+
+
+/* navigation-bar */
+
+.navigation-bar {
+    align-items: center;
+}
+
+
+/* switch left and right button */
+
+.switch {
+    position: absolute;
+    bottom: 0;
+}
+
+.switch>* {
+    width: 80.5px;
+    height: 73px;
+    place-content: center;
+}
+
+.mobile-nav-toggle {
+    display: none;
+    z-index: 1000;
+}
+
+.navigation-link a {
+    color: hsl(var(--black));
+    font-weight: bold;
+}
+
+@media (max-width: 35rem) {
+    .navigation-link {
+        position: absolute;
+        padding: min(20rem, 15vh) 2rem;
+        transition: transform 500ms ease-in-out;
+        background: hsl(var(--white));
+        display: none;
+        width: 100vw;
+        left: -30px;
+    }
+    .navigation-link[data-visible="true"] {
+        display: flex;
+        justify-content: end;
+        padding: 2rem 2rem;
+    }
+    .mobile-nav-toggle {
+        background: transparent;
+        display: block;
+        border: 0;
+        width: 1.5rem;
+        aspect-ratio: 1;
+        background-image: url(./images/icon-hamburger.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .mobile-nav-toggle[aria-expanded="true"] {
+        background-image: url(./images/icon-close.svg);
+    }
+    .mobile-nav-toggle:focus-visible {
+        outline: 5px solid white;
+        outline-offset: 5px;
+    }
+}
+
+
+/* layout */
+
+.main {
+    grid-template-rows: 400px 420px 240px 302px 228px;
+    grid-template-areas: "img" "content" "img1" "about" "img2";
+    gap: 3em;
+}
+
+.switch-content {
+    display: none;
+}
+
+@media (min-width:35em) {
+    .main {
+        gap: 0;
+        grid-template-columns: minmax(0em, 1fr) 420px 418px 161px 441px minmax(0em, 1fr);
+        grid-template-rows: 454px 73px 273px;
+        grid-template-areas: ". img img content content ." ". img img content content ." ". img1 about about img2 .";
+    }
+    .navigation-link a {
+        color: hsl(var(--white));
+    }
+    .switch-content {
+        display: flex;
+    }
+    .switch-main {
+        display: none;
+    }
+    .navigation-link>* {
+        position: relative;
+        padding: .5rem 0;
+        width: 100%;
+    }
+    .navigation-link>*:hover::after,
+    .navigation-link>*:focus::after {
+        position: absolute;
+        content: '';
+        height: 2px;
+        bottom: 5px;
+        left: 10px;
+        width: 50%;
+        background-color: white;
+    }
+}
+
+.primary-img {
+    position: relative;
+    background-image: url(./images/desktop-image-hero-1.jpg);
+    background-position: center center;
+    object-fit: cover;
+    background-size: cover;
+    grid-area: img;
+}
+
+.primary-content,
+.about-section {
+    grid-area: content;
+    place-content: center;
+    position: relative;
+}
+
+.primary-content>*,
+.about-section>* {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.secondary-img {
+    background-repeat: no-repeat;
+    background-image: url(./images/image-about-dark.jpg);
+    object-fit: cover;
+    background-size: cover;
+    grid-area: img1;
+}
+
+.left-right-button {
+    grid-area: button;
+}
+
+.about-section {
+    grid-area: about;
+}
+
+.img-section {
+    background-repeat: no-repeat;
+    background-image: url(./images/image-about-light.jpg);
+    object-fit: cover;
+    background-size: cover;
+    grid-area: img2;
+}
+
+.primary-header {
+    position: absolute;
+    --gap: 2rem;
+    top: 20px;
+    left: 30px
+}
